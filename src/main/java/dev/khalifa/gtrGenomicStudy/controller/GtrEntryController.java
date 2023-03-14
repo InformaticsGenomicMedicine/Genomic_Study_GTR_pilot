@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/gtr_entry")
@@ -24,6 +25,12 @@ public class GtrEntryController {
         return repository.findAll();
     }
 
+    @GetMapping ("/{testAccessionVer}")
+    Optional<List<GtrEntry>>  findByTestAccessionVer(@PathVariable String testAccessionVer){
+//        the orElseThrow is a good example of how to handle unexpected requests
+        return repository.findGtrEntriesByTestAccessionVerContaining(testAccessionVer);
+    }
+
 //    To retrieve specific entry by our internal ID
     @GetMapping ("/internal_id/{internal_id}")
     GtrEntry findById(@PathVariable Integer internal_id){
@@ -34,7 +41,12 @@ public class GtrEntryController {
     }
 
     @GetMapping ("/genes/{gene}")
-    List<GtrEntry> findById(@PathVariable String gene){
+    List<GtrEntry> findByGene(@PathVariable String gene){
         return repository.findAllByGenesContains(gene);
+    }
+
+    @GetMapping ("/lab_test_id/{labTestId}")
+    Optional<List<GtrEntry>>  findByLabTestId(@PathVariable String labTestId){
+        return repository.findGtrEntriesByLabTestId(labTestId);
     }
 }

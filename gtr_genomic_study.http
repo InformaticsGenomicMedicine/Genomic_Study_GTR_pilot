@@ -13,6 +13,7 @@ GET http://127.0.0.1:8080/gtr_entry/genes/HTT
 GET http://127.0.0.1:8080/gtr_entry/internal_id/1
 
 ### Get entries of certain lab_test_id
-GET http://127.0.0.1:8080/gtr_entry/internal_id/4006
+GET http://127.0.0.1:8080/gtr_entry/lab_test_id/4006
+
 
 

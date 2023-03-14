@@ -10,4 +10,8 @@ public interface GtrEntryRepository extends ListCrudRepository<GtrEntry, Integer
     List<GtrEntry> findAllByGenesContains(String gene_key_word);
 
     Optional<List<GtrEntry>> findGtrEntriesByGenes(String gene);
+
+    Optional<List<GtrEntry>>  findGtrEntriesByLabTestId(String labTestId);
+
+    Optional<List<GtrEntry>>  findGtrEntriesByTestAccessionVerContaining(String testAccessionVer);
 }
