@@ -33,3 +33,40 @@ CREATE TABLE IF NOT EXISTS Gtr_Entry (
                                        test_deletion_date TIMESTAMP
 --     , primary key (id) -- for H2
 );
+
+
+-- to load data from the TSV file
+
+COPY gtr_entry (test_accession_ver,
+name_of_laboratory,
+name_of_institution,
+facility_state,
+facility_postcode,
+facility_country,
+CLIA_number,
+state_licenses,
+state_license_numbers,
+lab_test_id,
+last_touch_date,
+lab_test_name,
+manufacturer_test_name,
+test_development,
+lab_unique_code,
+condition_identifiers,
+indication_types,
+inheritances,
+method_categories,
+methods,
+platforms,
+genes,
+drug_responses,
+now_current,
+test_curr_stat,
+test_pub_stat,
+lab_curr_stat,
+lab_pub_stat,
+test_create_date,
+test_deletion_date)
+FROM 'C:\Users\M250419\Downloads\test_version'--'C:\Users\path\to\NCBI\GTR\test_version' --after un zipping it
+DELIMITER E'\t'
+CSV HEADER;
