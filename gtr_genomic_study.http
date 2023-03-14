@@ -1,0 +1,5 @@
+### Get all GTR entries
+GET http://127.0.0.1:8080/gtr_entry
+
+### Get specific entry of certain test_accession_ver
+GET http://127.0.0.1:8080/gtr_entry/GTR000004034.1

@@ -12,7 +12,7 @@ public record GtrEntry (
         String facility_state ,
         String facility_postcode ,
         String facility_country ,
-        @Column(value = "CLIA_number")
+//        @Column(value = "CLIA_number")
         String clia_number,
         String state_licenses,
         String state_license_numbers,
@@ -31,10 +31,10 @@ public record GtrEntry (
         String genes,
         String drug_responses,
         String now_current,
-        String test_currStat,
-        String test_pubStat,
-        String lab_currStat,
-        String lab_pubStat,
+        String test_curr_stat,
+        String test_pub_stat,
+        String lab_curr_stat,
+        String lab_pub_stat,
         String test_create_date,
         String test_deletion_date
 ){}
