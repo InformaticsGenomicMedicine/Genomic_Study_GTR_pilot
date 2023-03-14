@@ -1,6 +1,6 @@
-package dev.khalifa.gtr_genomic_study;
+package dev.khalifa.gtrGenomicStudy;
 
-import dev.khalifa.gtr_genomic_study.config.GtrGenomicStudyProperties;
+import dev.khalifa.gtrGenomicStudy.config.GtrGenomicStudyProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

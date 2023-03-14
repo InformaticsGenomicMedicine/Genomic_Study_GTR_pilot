@@ -1,4 +1,4 @@
-package dev.khalifa.gtr_genomic_study.config;
+package dev.khalifa.gtrGenomicStudy.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
