@@ -18,5 +18,7 @@ GET http://127.0.0.1:8080/gtr_entry/lab_test_id/4006
 ### Get Genomic Study for specific entry using internal ID
 GET http://127.0.0.1:8080/gtr_fhir/1
 
+### GET SWAGGER endpoint
+GET http://localhost:8080/swagger-ui/index.html
 
 
