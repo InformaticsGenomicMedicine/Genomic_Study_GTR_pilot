@@ -25,7 +25,7 @@ public class SpringDocConfig {
                                         "{\"code\":400, \"Status\":\"Bad Request!\", \"Message\":\"Bad Request!\"}"
                                 )
                         ))
-        );
+        ).description("Bad Request!");
 
         ApiResponse internalServerErrorAPI = new ApiResponse().content(
                 new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE,
@@ -35,7 +35,7 @@ public class SpringDocConfig {
                                         "{\"code\":500, \"Status\":\"Internal Server Error!\", \"Message\":\"Internal Server Error!\"}"
                                 )
                         ))
-        );
+        ).description("Internal Server Error!");
 
         Components components = new Components();
         components.addResponses("badRequestAPI", badRequestAPI);
