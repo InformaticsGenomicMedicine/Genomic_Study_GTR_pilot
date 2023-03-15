@@ -43,9 +43,20 @@ public class SpringDocConfig {
                         ))
         ).description("Internal Server Error!");
 
+        ApiResponse successAPI = new ApiResponse().content(
+                new Content().addMediaType(MediaType.APPLICATION_JSON_VALUE,
+                        new io.swagger.v3.oas.models.media.MediaType().addExamples(
+                                "default",
+                                new Example().value(
+                                        readJsonFileToJsonObject.read().get("success").toString()
+                                )
+                        ))
+        ).description("Internal Server Error!");
+
         Components components = new Components();
         components.addResponses("badRequestAPI", badRequestAPI);
         components.addResponses("internalServerErrorAPI", internalServerErrorAPI);
+        components.addResponses("success", successAPI);
         return new OpenAPI()
                 .components(components)
                 .info(new Info().title("Spring Doc ++!!++")

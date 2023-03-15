@@ -32,18 +32,7 @@ public class GtrFhirController {
     responses = {
             @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
             @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Successfully served the FHIR resource",
-                    content = @Content(
-                            mediaType = "application/json",
-                            examples = {
-                                    @ExampleObject(
-                                            value = "{\"response\":\"TBA\"}"
-                                    )
-                            }
-                    )
-            )
+            @ApiResponse(responseCode = "200", ref = "success")
     })
     String gtrAsGenomicResource(@PathVariable String internalId){
 //        return repository.findGtrEntriesByTestAccessionVerContaining(testAccessionVer);
