@@ -24,6 +24,7 @@ public class GtrFhirController {
     public GtrFhirController(GtrToFhirService gtrToFhirService) {
         this.gtrToFhirService = gtrToFhirService;
         this.parser = gtrToFhirService.ctx.newJsonParser();
+        this.parser.setPrettyPrint(true);
     }
 
     @GetMapping(value = "/{internalId}", produces = "application/json")
