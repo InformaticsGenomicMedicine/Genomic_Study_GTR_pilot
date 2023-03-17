@@ -59,7 +59,10 @@ public class SpringDocConfig {
         components.addResponses("success", successAPI);
         return new OpenAPI()
                 .components(components)
-                .info(new Info().title("Spring Doc ++!!++")
-                .version("1.0.0").description("TBA: This is the doc PLACEHOLDER!"));
+                .info(new Info().title("Spring Doc of GTR record as FHIR Genomic Study")
+                .version("1.0.0").description("""
+                                This is a documentation of how to use this tool to get a NCBI-GTR Record as a FHIR R5 Genomic Study Resource.
+                                This tool provide More APIs to check original data of specific records.
+                                """));
     }
 }
