@@ -17,6 +17,7 @@ import java.util.Optional;
 public class GtrToFhirService {
 
     private final GtrEntryRepository repository;
+    private final StandardTerms terms;
 
     public FhirContext ctx = FhirContext.forR5();
     IParser parser = ctx.newJsonParser();
@@ -26,8 +27,9 @@ public class GtrToFhirService {
 //    TODO using dynamic server base url from the app properties
     IGenericClient client = ctx.newRestfulGenericClient("http://roffhi101a.mayo.edu:8083/fhir");
 
-    public GtrToFhirService(GtrEntryRepository repository) {
+    public GtrToFhirService(GtrEntryRepository repository, StandardTerms terms) {
         this.repository = repository;
+        this.terms = terms;
     }
 
     public GenomicStudy getGenomicStudy(String internalId){
@@ -59,6 +61,7 @@ public class GtrToFhirService {
         identifierGtrLabTestName.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
         identifierList.add(identifierGtrLabTestName);
 
+
 //        manufacturerTestName
         if (gtrEntry.get().manufacturerTestName() != null) {
             Identifier identifierManufacturerTestName = new Identifier().setValue(gtrEntry.get().manufacturerTestName());
@@ -73,17 +76,24 @@ public class GtrToFhirService {
             identifierList.add(identifierLabUniqueCode);
         }
 
-//Setting types
+
+        genomicStudy.setIdentifier(identifierList);
+
+
+//      Setting types
+//        testDevelopment
         if (gtrEntry.get().testDevelopment() != null) {
             genomicStudy.addType(new CodeableConcept(new Coding(
                     "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
-                    gtrEntry.get().testDevelopment().split("\\(" )[0],
+                    terms.testDevelopment.get(gtrEntry.get().testDevelopment()),
                     gtrEntry.get().testDevelopment()
             )));
         }
 
-        genomicStudy.setIdentifier(identifierList);
+//        indicationTypes
+        if (gtrEntry.get().indicationTypes() != null) {
 
+        }
 
         return genomicStudy;
 
