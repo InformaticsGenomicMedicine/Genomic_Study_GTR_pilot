@@ -63,6 +63,7 @@ public class SpringDocConfig {
                 .version("1.0.0").description("""
                                 This is a documentation of how to use this tool to get a NCBI-GTR Record as a FHIR R5 Genomic Study Resource.
                                 This tool provide More APIs to check original data of specific records.
+                                Internal Ids ranges from 1-417356
                                 """));
     }
 }
