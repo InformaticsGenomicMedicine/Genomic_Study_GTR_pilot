@@ -72,6 +72,34 @@ DELIMITER E'\t'
 CSV HEADER;
 
 
+CREATE TABLE IF NOT EXISTS disease (
+--     id INTEGER AUTO_INCREMENT,  -- for H2
+                                         id SERIAL PRIMARY KEY,
+                                         DiseaseName text,
+                                         SourceName text,
+                                         ConceptID text,
+                                         SourceID text,
+                                         DiseaseMIM text,
+                                         LastModified text,
+                                         Category text
+--     , primary key (id) -- for H2
+);
+
+-- to load data from the TSV file
+
+COPY disease (  DiseaseName,
+                SourceName,
+                ConceptID,
+                SourceID,
+                DiseaseMIM,
+                LastModified,
+                Category
+    )
+FROM 'C:\Users\M250419\Downloads\disease_names.txt'--'C:\Users\path\to\NCBI\GTR\disease_names.txt' --after un zipping it
+DELIMITER E'\t'
+CSV HEADER;
+
+
 
 -- Table: public.Copy Of gtr_ftp_xml
 
