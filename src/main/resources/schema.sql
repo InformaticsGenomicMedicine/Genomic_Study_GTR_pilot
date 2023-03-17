@@ -70,3 +70,42 @@ test_deletion_date)
 FROM 'C:\Users\M250419\Downloads\test_version'--'C:\Users\path\to\NCBI\GTR\test_version' --after un zipping it
 DELIMITER E'\t'
 CSV HEADER;
+
+-- Table: public.gtr_xml_Excel
+
+-- DROP TABLE IF EXISTS public."gtr_ftp_xml";
+
+CREATE TABLE IF NOT EXISTS public."gtr_ftp_xml"
+(
+    id double precision,
+    "GTRAccession" character varying(255) COLLATE pg_catalog."default",
+    "Version" character varying(255) COLLATE pg_catalog."default",
+    "TestName" character varying(255) COLLATE pg_catalog."default",
+    "TestShortName" character varying(255) COLLATE pg_catalog."default",
+    "TestStrategyDescription" character varying(255) COLLATE pg_catalog."default",
+    "TestStrategyPMID" double precision,
+    "TestStrategyURL" character varying(255) COLLATE pg_catalog."default",
+    "TestStrategyCitationText" character varying(255) COLLATE pg_catalog."default",
+    "TestCodesURL" character varying(255) COLLATE pg_catalog."default",
+    "TestStrategyLOINC" character varying(255) COLLATE pg_catalog."default",
+    "TestStrategyCPTCode" character varying(255) COLLATE pg_catalog."default",
+    "MethodTopCategoryValue" character varying(255) COLLATE pg_catalog."default",
+    "MethodCategoryValue" character varying(255) COLLATE pg_catalog."default",
+    "MethodCategorycode" character varying(255) COLLATE pg_catalog."default",
+    "MethodologyValue" character varying(255) COLLATE pg_catalog."default",
+    "MethodologyInstrument" character varying(255) COLLATE pg_catalog."default",
+    "MethodPlatform" character varying(255) COLLATE pg_catalog."default",
+    "MethodProtocolDescription" text COLLATE pg_catalog."default",
+    "MethodProtocolPMID" double precision,
+    "MethodProtocolURL" character varying(255) COLLATE pg_catalog."default",
+    "MethodProtocolCitationText" character varying(255) COLLATE pg_catalog."default",
+    "MethodConfirmation" character varying(255) COLLATE pg_catalog."default",
+    "Exons" character varying(255) COLLATE pg_catalog."default",
+    "ExonQualifier" character varying(255) COLLATE pg_catalog."default",
+    "ExonGeneID" character varying(255) COLLATE pg_catalog."default"
+)
+
+    TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."gtr_ftp_xml"
+    OWNER to postgres;
