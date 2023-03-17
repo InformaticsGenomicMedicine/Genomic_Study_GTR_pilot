@@ -77,7 +77,7 @@ CSV HEADER;
 
 -- DROP TABLE IF EXISTS public."gtr_ftp_xml";
 
-CREATE TABLE IF NOT EXISTS public."gtr_ftp_xml"
+/*CREATE TABLE IF NOT EXISTS public."gtr_ftp_xml"
 (
     "id" text,
     "GTRAccession" text,
@@ -107,13 +107,14 @@ CREATE TABLE IF NOT EXISTS public."gtr_ftp_xml"
 
     TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."Copy Of gtr_ftp_xml"
-    OWNER to postgres;
+ALTER TABLE IF EXISTS public."gtr_ftp_xml"
+    OWNER to postgres;*/
 
 -- Table: public.gtr_xml_Excel
 
 -- DROP TABLE IF EXISTS public."gtr_ftp_xml";
 
+/*
 COPY "gtr_ftp_xml" (
             "id",
             "GTRAccession",
@@ -142,4 +143,4 @@ COPY "gtr_ftp_xml" (
     )
 FROM 'C:\Users\M250419\Downloads\gtr_ftp_xml.txt'--'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs' --after un zipping it
 DELIMITER E'\t'
-CSV HEADER;
+CSV HEADER;*/
