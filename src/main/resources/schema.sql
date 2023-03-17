@@ -140,6 +140,6 @@ COPY "gtr_ftp_xml" (
             "ExonQualifier",
             "ExonGeneID"
     )
-FROM 'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs'--'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs' --after un zipping it
+FROM 'C:\Users\M250419\Downloads\gtr_ftp_xml.txt'--'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs' --after un zipping it
 DELIMITER E'\t'
 CSV HEADER;
