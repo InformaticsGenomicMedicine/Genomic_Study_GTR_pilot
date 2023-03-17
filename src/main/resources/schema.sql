@@ -71,41 +71,75 @@ FROM 'C:\Users\M250419\Downloads\test_version'--'C:\Users\path\to\NCBI\GTR\test_
 DELIMITER E'\t'
 CSV HEADER;
 
--- Table: public.gtr_xml_Excel
+
+
+-- Table: public.Copy Of gtr_ftp_xml
 
 -- DROP TABLE IF EXISTS public."gtr_ftp_xml";
 
 CREATE TABLE IF NOT EXISTS public."gtr_ftp_xml"
 (
-    id double precision,
-    "GTRAccession" character varying(255) COLLATE pg_catalog."default",
-    "Version" character varying(255) COLLATE pg_catalog."default",
-    "TestName" character varying(255) COLLATE pg_catalog."default",
-    "TestShortName" character varying(255) COLLATE pg_catalog."default",
-    "TestStrategyDescription" character varying(255) COLLATE pg_catalog."default",
-    "TestStrategyPMID" double precision,
-    "TestStrategyURL" character varying(255) COLLATE pg_catalog."default",
-    "TestStrategyCitationText" character varying(255) COLLATE pg_catalog."default",
-    "TestCodesURL" character varying(255) COLLATE pg_catalog."default",
-    "TestStrategyLOINC" character varying(255) COLLATE pg_catalog."default",
-    "TestStrategyCPTCode" character varying(255) COLLATE pg_catalog."default",
-    "MethodTopCategoryValue" character varying(255) COLLATE pg_catalog."default",
-    "MethodCategoryValue" character varying(255) COLLATE pg_catalog."default",
-    "MethodCategorycode" character varying(255) COLLATE pg_catalog."default",
-    "MethodologyValue" character varying(255) COLLATE pg_catalog."default",
-    "MethodologyInstrument" character varying(255) COLLATE pg_catalog."default",
-    "MethodPlatform" character varying(255) COLLATE pg_catalog."default",
-    "MethodProtocolDescription" text COLLATE pg_catalog."default",
-    "MethodProtocolPMID" double precision,
-    "MethodProtocolURL" character varying(255) COLLATE pg_catalog."default",
-    "MethodProtocolCitationText" character varying(255) COLLATE pg_catalog."default",
-    "MethodConfirmation" character varying(255) COLLATE pg_catalog."default",
-    "Exons" character varying(255) COLLATE pg_catalog."default",
-    "ExonQualifier" character varying(255) COLLATE pg_catalog."default",
-    "ExonGeneID" character varying(255) COLLATE pg_catalog."default"
+    "id" text,
+    "GTRAccession" text,
+    "Version" text,
+    "TestName" text,
+    "TestShortName" text,
+    "TestStrategyPMID" text,
+    "TestStrategyURL" text,
+    "TestStrategyCitationText" text,
+    "TestCodesURL" text,
+    "TestStrategyLOINC" text,
+    "TestStrategyCPTCode" text,
+    "MethodTopCategoryValue" text,
+    "MethodCategoryValue" text,
+    "MethodCategorycode" text,
+    "MethodologyValue" text,
+    "MethodologyInstrument" text,
+    "MethodPlatform" text,
+    "MethodProtocolPMID" text,
+    "MethodProtocolURL" text,
+    "MethodProtocolCitationText" text,
+    "MethodConfirmation" text,
+    "Exons" text,
+    "ExonQualifier" text,
+    "ExonGeneID" text
 )
 
     TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public."gtr_ftp_xml"
+ALTER TABLE IF EXISTS public."Copy Of gtr_ftp_xml"
     OWNER to postgres;
+
+-- Table: public.gtr_xml_Excel
+
+-- DROP TABLE IF EXISTS public."gtr_ftp_xml";
+
+COPY "gtr_ftp_xml" (
+            "id",
+            "GTRAccession",
+            "Version",
+            "TestName",
+            "TestShortName",
+            "TestStrategyPMID",
+            "TestStrategyURL",
+            "TestStrategyCitationText",
+            "TestCodesURL",
+            "TestStrategyLOINC",
+            "TestStrategyCPTCode",
+            "MethodTopCategoryValue",
+            "MethodCategoryValue",
+            "MethodCategorycode",
+            "MethodologyValue",
+            "MethodologyInstrument",
+            "MethodPlatform",
+            "MethodProtocolPMID",
+            "MethodProtocolURL",
+            "MethodProtocolCitationText",
+            "MethodConfirmation",
+            "Exons",
+            "ExonQualifier",
+            "ExonGeneID"
+    )
+FROM 'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs'--'C:\Users\M250419\Downloads\gtr_ftp_xml.tvs' --after un zipping it
+DELIMITER E'\t'
+CSV HEADER;
