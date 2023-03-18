@@ -218,7 +218,7 @@ public class GtrToFhirService {
             for (String term: types){
                 genomicStudy.addType(new CodeableConcept(new Coding(
                         "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
-                        null,
+                        terms.diseaseCategory.get(term),
                         term
                 )));
             }
