@@ -39,4 +39,17 @@ public class GtrFhirController {
 //        return repository.findGtrEntriesByTestAccessionVerContaining(testAccessionVer);
         return parser.encodeResourceToString(gtrToFhirService.getGenomicStudy(internalId));
     }
+
+    @GetMapping(value = "/disease/{diseaseConceptId}", produces = "application/json")
+//    The following is a swagger annotation
+    @Operation(description = "A Genomic Study resource for specific NCBI-GTR entry",
+            responses = {
+                    @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
+                    @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
+                    @ApiResponse(responseCode = "200", ref = "success")
+            })
+    String gtrAsGenomicResourceByDisease(@PathVariable String diseaseConceptId){
+//        return repository.findGtrEntriesByTestAccessionVerContaining(testAccessionVer);
+        return parser.encodeResourceToString(gtrToFhirService.getGenomicStudyByDisease(diseaseConceptId));
+    }
 }

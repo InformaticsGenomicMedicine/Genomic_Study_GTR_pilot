@@ -9,6 +9,7 @@ public class StandardTerms {
     HashMap<String, String> testDevelopment = new HashMap<String, String>();
     HashMap<String, String> indicationType = new HashMap<String, String>();
 //    HashMap<String, String > diseaseSource = new HashMap<String, String>();
+    HashMap<String, String> diseaseCategory = new HashMap<String, String>();
     String[] testDevelopmentTerms = {
             "FDA-reviewed (has FDA test name)",
             "Manufactured (research use only; not FDA-reviewed)",
@@ -53,6 +54,16 @@ public class StandardTerms {
             "GeneReviews"
     };*/
 
+    String[] diseaseCategoryTerms = {
+            "Blood group",
+            "Disease",
+            "Finding",
+            "Infectious disease",
+            "Named protein variant",
+            "Pharmacological response",
+            "phenotype instruction"
+    };
+
     public StandardTerms() {
         for (int i=0; i < testDevelopmentTerms.length; i++){
             testDevelopment.put(testDevelopmentTerms[i], String.valueOf(i+1));
@@ -62,7 +73,9 @@ public class StandardTerms {
             indicationType.put(indicationTypeTerms[i], String.valueOf(i+1));
         }
 
-
+        for (int i=0; i < diseaseCategoryTerms.length; i++){
+            diseaseCategory.put(diseaseCategoryTerms[i], String.valueOf(i+1));
+        }
 
     }
 }

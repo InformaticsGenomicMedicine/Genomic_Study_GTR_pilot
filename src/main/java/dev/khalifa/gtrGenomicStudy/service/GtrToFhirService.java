@@ -7,11 +7,13 @@ import dev.khalifa.gtrGenomicStudy.model.Disease;
 import dev.khalifa.gtrGenomicStudy.model.GtrEntry;
 import dev.khalifa.gtrGenomicStudy.repository.DiseaseRepository;
 import dev.khalifa.gtrGenomicStudy.repository.GtrEntryRepository;
+import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r5.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -110,7 +112,7 @@ public class GtrToFhirService {
             for (String term : gtrEntry.get().methodCategories().split("\\|")) {
                 genomicStudy.addType(new CodeableConcept(new Coding(
                         "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt",
-                        null,
+                        terms.diseaseCategory.get(term),
                         term
                 )));
             }
@@ -185,4 +187,43 @@ public class GtrToFhirService {
     }
 
 
+    public GenomicStudy getGenomicStudyByDisease(String diseaseConceptId) {
+        List<Disease> diseaseList = diseaseRepository.findDiseasesByConceptId(diseaseConceptId);
+        System.out.println(diseaseList);
+        GenomicStudy genomicStudy = new GenomicStudy(
+                new CodeableConcept(new Coding("http://hl7.org/fhir/genomicstudy-status",
+                        "unknown", "Unknown")),
+//                from https://build.fhir.org/patient-examples.html
+                new Reference("https://build.fhir.org/patient-example.json")
+        );
+
+        //        setting identifiers
+        List<Identifier> identifierList = new ArrayList<>();
+
+        if(!diseaseList.isEmpty()) {
+//          Setting identifiers based on disease concept_id
+            Identifier identifierDiseaseId = new Identifier().setValue(diseaseConceptId);
+            identifierDiseaseId.setSystem("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt");
+            identifierList.add(identifierDiseaseId);
+
+            genomicStudy.setIdentifier(identifierList);
+
+
+//            setting type
+            HashSet<String> types = new HashSet<String>();
+            for (Disease disease: diseaseList){
+                types.add(disease.category());
+            }
+//            System.out.println(types);
+            for (String term: types){
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                        null,
+                        term
+                )));
+            }
+        }
+
+        return genomicStudy;
+    }
 }

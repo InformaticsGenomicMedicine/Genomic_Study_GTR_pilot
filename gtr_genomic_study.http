@@ -21,4 +21,7 @@ GET http://127.0.0.1:8080/gtr_fhir/1
 ### GET SWAGGER endpoint
 GET http://localhost:8080/swagger-ui/index.html
 
+### GET Genomic Study by Disease
+GET http://localhost:8080/gtr_fhir/disease/C0001079
+
 
