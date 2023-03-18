@@ -8,6 +8,7 @@ import java.util.HashMap;
 public class StandardTerms {
     HashMap<String, String> testDevelopment = new HashMap<String, String>();
     HashMap<String, String> indicationType = new HashMap<String, String>();
+//    HashMap<String, String > diseaseSource = new HashMap<String, String>();
     String[] testDevelopmentTerms = {
             "FDA-reviewed (has FDA test name)",
             "Manufactured (research use only; not FDA-reviewed)",
@@ -40,6 +41,18 @@ public class StandardTerms {
             "Fetal hemoglobin quantitative trait locus 1"
     };
 
+/*    String[] diseaseSourceNames = {
+            "NCBI curation",
+            "MONDO",
+            "Orphanet",
+            "Human Phenotype Ontology",
+            "OMIM phenotypic series",
+            "PharmGKB",
+            "OMIM",
+            "Clinical Pharmacogenetics Implementation Consortium",
+            "GeneReviews"
+    };*/
+
     public StandardTerms() {
         for (int i=0; i < testDevelopmentTerms.length; i++){
             testDevelopment.put(testDevelopmentTerms[i], String.valueOf(i+1));
@@ -48,6 +61,8 @@ public class StandardTerms {
         for (int i=0; i < indicationTypeTerms.length; i++){
             indicationType.put(indicationTypeTerms[i], String.valueOf(i+1));
         }
+
+
 
     }
 }
