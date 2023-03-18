@@ -82,6 +82,7 @@ lab_pub_stat,
 test_create_date,
 test_deletion_date)
 FROM 'C:\Users\M250419\Downloads\test_version'--'C:\Users\path\to\NCBI\GTR\test_version' --after un zipping it
+--     source: https://ftp.ncbi.nlm.nih.gov/pub/GTR/data/test_version.gz
 DELIMITER E'\t'
 CSV HEADER;
 
@@ -110,6 +111,7 @@ COPY disease (  disease_name,
                 category
     )
 FROM 'C:\Users\M250419\Downloads\disease_names.txt'--'C:\Users\path\to\NCBI\GTR\disease_names.txt' --after un zipping it
+    --source: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt
 DELIMITER E'\t'
 CSV HEADER;
 
