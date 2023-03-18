@@ -8,4 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DiseaseRepository extends ListCrudRepository<Disease, Integer> {
+    List<Disease> findDiseaseByDiseaseName(String diseaseName);
 }
