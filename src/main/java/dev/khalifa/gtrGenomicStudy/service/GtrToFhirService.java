@@ -3,7 +3,9 @@ package dev.khalifa.gtrGenomicStudy.service;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
+import dev.khalifa.gtrGenomicStudy.model.Disease;
 import dev.khalifa.gtrGenomicStudy.model.GtrEntry;
+import dev.khalifa.gtrGenomicStudy.repository.DiseaseRepository;
 import dev.khalifa.gtrGenomicStudy.repository.GtrEntryRepository;
 import org.hl7.fhir.r5.model.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class GtrToFhirService {
 
     private final GtrEntryRepository repository;
+    private final DiseaseRepository diseaseRepository;
     private final StandardTerms terms;
 
     public FhirContext ctx = FhirContext.forR5();
@@ -27,8 +30,9 @@ public class GtrToFhirService {
 //    TODO using dynamic server base url from the app properties
     IGenericClient client = ctx.newRestfulGenericClient("http://roffhi101a.mayo.edu:8083/fhir");
 
-    public GtrToFhirService(GtrEntryRepository repository, StandardTerms terms) {
+    public GtrToFhirService(GtrEntryRepository repository, DiseaseRepository diseaseRepository, StandardTerms terms) {
         this.repository = repository;
+        this.diseaseRepository = diseaseRepository;
         this.terms = terms;
     }
 
@@ -92,7 +96,38 @@ public class GtrToFhirService {
 
 //        indicationTypes
         if (gtrEntry.get().indicationTypes() != null) {
+            for (String term : gtrEntry.get().indicationTypes().split("\\|")) {
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/documentation/GTRFieldDefinitions.pdf",
+                        terms.indicationType.get(term),
+                        term
+                )));
+            }
+        }
 
+
+//        Setting reasons
+        if (gtrEntry.get().conditionIdentifiers() != null) {
+            for (String term : gtrEntry.get().conditionIdentifiers().split("\\|")) {
+                System.out.println("Terms: " + term + "\n");
+                List<Disease> diseaseIdentifierList = diseaseRepository.findDiseaseByDiseaseName(term);
+                if (!diseaseIdentifierList.isEmpty()){
+                    System.out.println("diseaseIdentifierList: "+diseaseIdentifierList);
+                    for (Disease disease : diseaseIdentifierList){
+                        CodeableConcept codeableConcept = new CodeableConcept();
+                        codeableConcept.addCoding("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt",
+                                disease.conceptId(),
+                                disease.diseaseName());
+                        codeableConcept.addCoding(
+                                disease.sourceName(),
+                                disease.sourceId(),
+                                disease.diseaseName()
+                        );
+                        genomicStudy.addReason(new CodeableReference(codeableConcept));
+                    }
+                }
+//                genomicStudy.addReason();
+            }
         }
 
         return genomicStudy;
