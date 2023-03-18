@@ -236,6 +236,31 @@ public class GtrToFhirService {
                 "[source_id]"
         );
 
+        HashSet<String> testDevelopmentTypes = new HashSet<String>();
+
+        List<GtrEntry> gtrEntryList = repository.
+                findGtrEntriesByConditionIdentifiersContains(diseaseList.get(0).diseaseName());
+        if (gtrEntryList.isEmpty()){
+            return genomicStudy;
+        }
+        for (GtrEntry gtrEntry : gtrEntryList){
+            //      Setting types
+//        testDevelopment
+            if (gtrEntry.testDevelopment() != null) {
+                testDevelopmentTypes.add(gtrEntry.testDevelopment());
+            }
+        }
+
+        if (!testDevelopmentTypes.isEmpty()){
+            for (String term: testDevelopmentTypes){
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                        terms.testDevelopment.get(term),
+                        term
+                )));
+            }
+        }
+
 
         return genomicStudy;
     }

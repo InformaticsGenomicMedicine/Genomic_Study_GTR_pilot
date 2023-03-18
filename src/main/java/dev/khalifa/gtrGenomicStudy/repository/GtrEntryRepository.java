@@ -14,4 +14,5 @@ public interface GtrEntryRepository extends ListCrudRepository<GtrEntry, Integer
     Optional<List<GtrEntry>>  findGtrEntriesByLabTestId(String labTestId);
 
     Optional<List<GtrEntry>>  findGtrEntriesByTestAccessionVerContaining(String testAccessionVer);
+    List<GtrEntry> findGtrEntriesByConditionIdentifiersContains(String diseaseName);
 }
