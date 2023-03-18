@@ -105,14 +105,26 @@ public class GtrToFhirService {
             }
         }
 
+//        MethodCategories as Types
+        if (gtrEntry.get().methodCategories() != null) {
+            for (String term : gtrEntry.get().methodCategories().split("\\|")) {
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt",
+                        null,
+                        term
+                )));
+            }
+        }
+
+
 
 //        Setting reasons
         if (gtrEntry.get().conditionIdentifiers() != null) {
             for (String term : gtrEntry.get().conditionIdentifiers().split("\\|")) {
-                System.out.println("Terms: " + term + "\n");
+//                System.out.println("Terms: " + term + "\n");
                 List<Disease> diseaseIdentifierList = diseaseRepository.findDiseaseByDiseaseName(term);
                 if (!diseaseIdentifierList.isEmpty()){
-                    System.out.println("diseaseIdentifierList: "+diseaseIdentifierList);
+//                    System.out.println("diseaseIdentifierList: "+diseaseIdentifierList);
                     for (Disease disease : diseaseIdentifierList){
                         CodeableConcept codeableConcept = new CodeableConcept();
                         codeableConcept.addCoding("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt",
@@ -126,7 +138,6 @@ public class GtrToFhirService {
                         genomicStudy.addReason(new CodeableReference(codeableConcept));
                     }
                 }
-//                genomicStudy.addReason();
             }
         }
 
