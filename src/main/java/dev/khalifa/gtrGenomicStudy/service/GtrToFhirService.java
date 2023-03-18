@@ -148,7 +148,8 @@ public class GtrToFhirService {
                         "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
                         null,
                         term
-                )));
+                )))
+                        .addDevice().setDevice(new Reference("https://build.fhir.org/device-example.html"));
 
             }
 
