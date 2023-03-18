@@ -155,6 +155,15 @@ public class GtrToFhirService {
 
         }
 
+//        Setting platform
+//          This is not a real FHIR reference, but this was used to showcase the name of the device
+//              as it may appear in a corresponding resource, i.e., device.displayName
+        if (gtrEntry.get().platforms() != null){
+            for(String term : gtrEntry.get().platforms().split("\\|")){
+                genomicStudy.getAnalysis().get(1).addDevice().setDevice(new Reference(term));
+            }
+        }
+
         return genomicStudy;
 
     }
