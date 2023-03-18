@@ -11,7 +11,7 @@
 
 
 
-
+DROP TABLE IF EXISTS Gtr_Entry;
 CREATE TABLE IF NOT EXISTS Gtr_Entry (
 --     id INTEGER AUTO_INCREMENT,  -- for H2
                                        id SERIAL PRIMARY KEY,
@@ -85,7 +85,7 @@ FROM 'C:\Users\M250419\Downloads\test_version'--'C:\Users\path\to\NCBI\GTR\test_
 DELIMITER E'\t'
 CSV HEADER;
 
-
+DROP TABLE IF EXISTS disease;
 CREATE TABLE IF NOT EXISTS disease (
 --     id INTEGER AUTO_INCREMENT,  -- for H2
                                          id SERIAL PRIMARY KEY,
