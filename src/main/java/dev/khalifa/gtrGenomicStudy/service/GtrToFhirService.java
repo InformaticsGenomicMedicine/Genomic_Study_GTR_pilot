@@ -317,7 +317,42 @@ public class GtrToFhirService {
                 System.out.println("number of GTR_Entries is: " + gtrEntryList.size());
                 genomicStudy.addAnalysis();
                 //identifiers goes here
+                //        setting identifiers
+                List<Identifier> analysisIdentifierList = new ArrayList<>();
+//          LabTestId
+                Identifier identifierGtrId = new Identifier().setValue(gtrEntry.labTestId());
+                identifierGtrId.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
 
+                analysisIdentifierList.add(identifierGtrId);
+
+//        AccessionVersion
+                Identifier identifierGtrAccessionVersion = new Identifier().setValue(gtrEntry.testAccessionVer());
+                identifierGtrAccessionVersion.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
+                analysisIdentifierList.add(identifierGtrAccessionVersion);
+
+//        LabTestName
+                Identifier identifierGtrLabTestName = new Identifier().setValue(gtrEntry.labTestName());
+                identifierGtrLabTestName.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
+                analysisIdentifierList.add(identifierGtrLabTestName);
+
+
+//        manufacturerTestName
+                if (gtrEntry.manufacturerTestName() != null) {
+                    Identifier identifierManufacturerTestName = new Identifier().setValue(gtrEntry.manufacturerTestName());
+                    identifierManufacturerTestName.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
+                    analysisIdentifierList.add(identifierManufacturerTestName);
+                }
+
+//        labUniqueCode
+                if (gtrEntry.labUniqueCode() != null) {
+                    Identifier identifierLabUniqueCode = new Identifier().setValue(gtrEntry.labUniqueCode());
+                    identifierLabUniqueCode.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
+                    analysisIdentifierList.add(identifierLabUniqueCode);
+                }
+
+                genomicStudy.getAnalysis().get(genomicStudy.getAnalysis().size()-1).setIdentifier(analysisIdentifierList);
+                //end of setting identifiers
+//                Methods
 //                System.out.println("Test Method: " + gtrEntry.methods());
                 for (String term : gtrEntry.methods().split("\\|")){
                     System.out.println("term is: " + term);
