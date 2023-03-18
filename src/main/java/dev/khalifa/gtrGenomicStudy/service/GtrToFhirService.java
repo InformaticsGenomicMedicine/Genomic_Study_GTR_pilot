@@ -316,7 +316,9 @@ public class GtrToFhirService {
             //adding analysis level data
             if (!gtrEntry.methods().isEmpty()){
                 System.out.println("number of GTR_Entries is: " + gtrEntryList.size());
-                genomicStudy.addAnalysis();
+                genomicStudy.addAnalysis()
+                        .setTitle(gtrEntry.labTestName())
+                        .setInstantiatesUri("https://www.ncbi.nlm.nih.gov/gtr/tests/" + gtrEntry.labTestId());
                 //identifiers goes here
                 //        setting identifiers
                 List<Identifier> analysisIdentifierList = new ArrayList<>();
