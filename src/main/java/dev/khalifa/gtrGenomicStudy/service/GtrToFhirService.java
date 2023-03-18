@@ -90,7 +90,7 @@ public class GtrToFhirService {
 //        testDevelopment
         if (gtrEntry.get().testDevelopment() != null) {
             genomicStudy.addType(new CodeableConcept(new Coding(
-                    "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                    "Test Development Type: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
                     terms.testDevelopment.get(gtrEntry.get().testDevelopment()),
                     gtrEntry.get().testDevelopment()
             )));
@@ -100,7 +100,7 @@ public class GtrToFhirService {
         if (gtrEntry.get().indicationTypes() != null) {
             for (String term : gtrEntry.get().indicationTypes().split("\\|")) {
                 genomicStudy.addType(new CodeableConcept(new Coding(
-                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/documentation/GTRFieldDefinitions.pdf",
+                        "Indication Type: https://ftp.ncbi.nlm.nih.gov/pub/GTR/documentation/GTRFieldDefinitions.pdf",
                         terms.indicationType.get(term),
                         term
                 )));
@@ -111,8 +111,8 @@ public class GtrToFhirService {
         if (gtrEntry.get().methodCategories() != null) {
             for (String term : gtrEntry.get().methodCategories().split("\\|")) {
                 genomicStudy.addType(new CodeableConcept(new Coding(
-                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt",
-                        terms.diseaseCategory.get(term),
+                        "Method Category: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt",
+                        null,
                         term
                 )));
             }
@@ -147,7 +147,7 @@ public class GtrToFhirService {
         if (gtrEntry.get().methods() != null){
             for(String term : gtrEntry.get().methods().split("\\|")){
                 genomicStudy.addAnalysis().addMethodType(new CodeableConcept(new Coding(
-                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
+                        "Primary Test Methodology: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
                         null,
                         term
                 )))
@@ -219,7 +219,7 @@ public class GtrToFhirService {
 //            System.out.println(types);
         for (String term: types){
             genomicStudy.addType(new CodeableConcept(new Coding(
-                    "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                    "Disease Category: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt",
                     terms.diseaseCategory.get(term),
                     term
             )));
@@ -232,11 +232,13 @@ public class GtrToFhirService {
                 + diseaseConceptId +
                 ".  " +
                 "## MedGen record: https://www.ncbi.nlm.nih.gov/medgen/?term=" +
-                diseaseConceptId +
-                "[source_id]"
+                diseaseConceptId
+//                +"[source_id]"
         );
 
         HashSet<String> testDevelopmentTypes = new HashSet<String>();
+        HashSet<String> indicationTypes = new HashSet<String>();
+        HashSet<String> methodCategories = new HashSet<String>();
 
         List<GtrEntry> gtrEntryList = repository.
                 findGtrEntriesByConditionIdentifiersContains(diseaseList.get(0).diseaseName());
@@ -249,13 +251,46 @@ public class GtrToFhirService {
             if (gtrEntry.testDevelopment() != null) {
                 testDevelopmentTypes.add(gtrEntry.testDevelopment());
             }
+//         indicationTypes
+            if (gtrEntry.indicationTypes() != null){
+                for (String term : gtrEntry.indicationTypes().split("\\|")) {
+                    indicationTypes.add(term);
+                }
+            }
+
+//          methodCategories
+            if (gtrEntry.methodCategories() != null){
+                for (String term : gtrEntry.methodCategories().split("\\|")) {
+                    methodCategories.add(term);
+                }
+            }
         }
 
         if (!testDevelopmentTypes.isEmpty()){
             for (String term: testDevelopmentTypes){
                 genomicStudy.addType(new CodeableConcept(new Coding(
-                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                        "Test Development Type: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
                         terms.testDevelopment.get(term),
+                        term
+                )));
+            }
+        }
+
+        if (!indicationTypes.isEmpty()){
+            for (String term: indicationTypes){
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "Indication Type: https://ftp.ncbi.nlm.nih.gov/pub/GTR/documentation/GTRFieldDefinitions.pdf",
+                        terms.indicationType.get(term),
+                        term
+                )));
+            }
+        }
+
+        if (!methodCategories.isEmpty()){
+            for (String term: methodCategories){
+                genomicStudy.addType(new CodeableConcept(new Coding(
+                        "Method Category: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt",
+                        null,
                         term
                 )));
             }
