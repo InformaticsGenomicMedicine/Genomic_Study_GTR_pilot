@@ -141,6 +141,19 @@ public class GtrToFhirService {
             }
         }
 
+//        Adding analyses
+        if (gtrEntry.get().methods() != null){
+            for(String term : gtrEntry.get().methods().split("\\|")){
+                genomicStudy.addAnalysis().addMethodType(new CodeableConcept(new Coding(
+                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
+                        null,
+                        term
+                )));
+
+            }
+
+        }
+
         return genomicStudy;
 
     }
