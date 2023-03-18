@@ -24,4 +24,15 @@ GET http://localhost:8080/swagger-ui/index.html
 ### GET Genomic Study by Disease
 GET http://localhost:8080/gtr_fhir/disease/C0001079
 
+### Disease-level Genomic Study three analyses
+GET http://localhost:8080/gtr_fhir/disease/C4518821
+
+### Disease-level Genomic Study NO analysis
+GET http://localhost:8080/gtr_fhir/disease/C4025140
+
+### Disease-level Genomic Study 966 analyses
+GET http://localhost:8080/gtr_fhir/disease/C0001079
+
+
+
 

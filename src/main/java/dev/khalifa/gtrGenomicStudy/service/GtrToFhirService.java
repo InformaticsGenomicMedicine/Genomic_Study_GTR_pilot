@@ -283,8 +283,54 @@ public class GtrToFhirService {
                 }
             }
 
+//        Adding analyses
+/*            if (gtrEntry.methods() != null){
+                for(String term : gtrEntry.methods().split("\\|")){
+                    genomicStudy.addAnalysis().addMethodType(new CodeableConcept(new Coding(
+                                    "Primary Test Methodology: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
+                                    null,
+                                    term
+                            )))
+                            .addDevice().setDevice(new Reference("https://build.fhir.org/device-example.html"));
 
+                    genomicStudy.getAnalysis().get(0).addInput().setFile(
+                            new Reference("https://build.fhir.org/documentreference-example.html"));
+
+                }
+
+            }*/
+
+//        Setting platform
+//          This is not a real FHIR reference, but this was used to showcase the name of the device
+//              as it may appear in a corresponding resource, i.e., device.displayName
+/*            String noPlatform = "None/not applicable";
+            if (gtrEntry.platforms() != null){
+                if (!gtrEntry.platforms().equals(noPlatform)) {
+                    for (String term : gtrEntry.platforms().split("\\|")) {
+                        genomicStudy.getAnalysis().get(0).addDevice().setDevice(new Reference(term));
+
+                    }
+                }
+            }*/
             //adding analysis level data
+            if (!gtrEntry.methods().isEmpty()){
+                System.out.println("number of GTR_Entries is: " + gtrEntryList.size());
+                genomicStudy.addAnalysis();
+                //identifiers goes here
+
+//                System.out.println("Test Method: " + gtrEntry.methods());
+                for (String term : gtrEntry.methods().split("\\|")){
+                    System.out.println("term is: " + term);
+       /*             genomicStudy.addAnalysis().addDevice().setDevice(new Reference(
+                            "https://build.fhir.org/device-example.html"));*/
+
+                    genomicStudy.getAnalysis().get(0).addMethodType(new CodeableConcept(new Coding(
+                            "Primary Test Methodology: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
+                            null,
+                            term
+                    )));
+                }
+            }
         } //End of GtrEntry Loop
 
         if (!testDevelopmentTypes.isEmpty()){
