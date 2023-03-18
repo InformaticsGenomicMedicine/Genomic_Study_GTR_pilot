@@ -201,28 +201,35 @@ public class GtrToFhirService {
         List<Identifier> identifierList = new ArrayList<>();
 
         if(!diseaseList.isEmpty()) {
+            return genomicStudy;
+        }
 //          Setting identifiers based on disease concept_id
-            Identifier identifierDiseaseId = new Identifier().setValue(diseaseConceptId);
-            identifierDiseaseId.setSystem("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt");
-            identifierList.add(identifierDiseaseId);
+        Identifier identifierDiseaseId = new Identifier().setValue(diseaseConceptId);
+        identifierDiseaseId.setSystem("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt");
+        identifierList.add(identifierDiseaseId);
 
-            genomicStudy.setIdentifier(identifierList);
+        genomicStudy.setIdentifier(identifierList);
 
 
 //            setting type
-            HashSet<String> types = new HashSet<String>();
-            for (Disease disease: diseaseList){
-                types.add(disease.category());
-            }
-//            System.out.println(types);
-            for (String term: types){
-                genomicStudy.addType(new CodeableConcept(new Coding(
-                        "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
-                        terms.diseaseCategory.get(term),
-                        term
-                )));
-            }
+        HashSet<String> types = new HashSet<String>();
+        for (Disease disease: diseaseList){
+            types.add(disease.category());
         }
+//            System.out.println(types);
+        for (String term: types){
+            genomicStudy.addType(new CodeableConcept(new Coding(
+                    "https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Test_development.txt",
+                    terms.diseaseCategory.get(term),
+                    term
+            )));
+        }
+//Setting description including a link to the condition page on NIH GTR
+        genomicStudy.setDescription("A genomic study for "
+                + diseaseList.get(0).diseaseName()
+                + ".\nMore details about this condition is available at: https://www.ncbi.nlm.nih.gov/gtr/conditions/"
+                + diseaseConceptId);
+
 
         return genomicStudy;
     }
