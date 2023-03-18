@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/data/disease_names.txt
+/src/main/resources/data/test_version
