@@ -209,13 +209,30 @@ public class GtrToFhirService {
         identifierList.add(identifierDiseaseId);
 
         genomicStudy.setIdentifier(identifierList);
-
+// Adding concept ID as a coding
+        CodeableConcept codeableConcept = new CodeableConcept();
+        codeableConcept.addCoding("https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/disease_names.txt",
+                diseaseList.get(0).conceptId(),
+                diseaseList.get(0).diseaseName());
 
 //            setting type
         HashSet<String> types = new HashSet<String>();
+        HashSet<String> sources = new HashSet<String>();
         for (Disease disease: diseaseList){
             types.add(disease.category());
+
+            sources.add(disease.sourceName());
+
+            codeableConcept.addCoding(
+                    disease.sourceName(),
+                    disease.sourceId(),
+                    disease.diseaseName()
+            );
+
+
         }
+
+        genomicStudy.addReason(new CodeableReference(codeableConcept));
 //            System.out.println(types);
         for (String term: types){
             genomicStudy.addType(new CodeableConcept(new Coding(
@@ -235,6 +252,7 @@ public class GtrToFhirService {
                 diseaseConceptId
 //                +"[source_id]"
         );
+
 
         HashSet<String> testDevelopmentTypes = new HashSet<String>();
         HashSet<String> indicationTypes = new HashSet<String>();
@@ -264,7 +282,10 @@ public class GtrToFhirService {
                     methodCategories.add(term);
                 }
             }
-        }
+
+
+            //adding analysis level data
+        } //End of GtrEntry Loop
 
         if (!testDevelopmentTypes.isEmpty()){
             for (String term: testDevelopmentTypes){
