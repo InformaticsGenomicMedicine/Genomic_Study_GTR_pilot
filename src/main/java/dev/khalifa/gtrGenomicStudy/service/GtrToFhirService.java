@@ -170,7 +170,7 @@ public class GtrToFhirService {
 //        Referencing some example FHIR resources
         genomicStudy.setReferrer(new Reference("https://build.fhir.org/practitioner-example-f007-sh.html"));
         genomicStudy.setEncounter(new Reference("https://build.fhir.org/encounter-example.html"));
-        genomicStudy.setDescription("Test for"
+        genomicStudy.setDescription("Test for "
                 + gtrEntry.get().labTestName()
                 + " is available at: https://www.ncbi.nlm.nih.gov/gtr/tests/"
                 + gtrEntry.get().labTestId());
