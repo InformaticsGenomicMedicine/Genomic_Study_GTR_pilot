@@ -189,7 +189,7 @@ public class GtrToFhirService {
 
     public GenomicStudy getGenomicStudyByDisease(String diseaseConceptId) {
         List<Disease> diseaseList = diseaseRepository.findDiseasesByConceptId(diseaseConceptId);
-        System.out.println(diseaseList);
+//        System.out.println(diseaseList);
         GenomicStudy genomicStudy = new GenomicStudy(
                 new CodeableConcept(new Coding("http://hl7.org/fhir/genomicstudy-status",
                         "unknown", "Unknown")),
@@ -315,7 +315,7 @@ public class GtrToFhirService {
             }*/
             //adding analysis level data
             if (!gtrEntry.methods().isEmpty()){
-                System.out.println("number of GTR_Entries is: " + gtrEntryList.size());
+//                System.out.println("number of GTR_Entries is: " + gtrEntryList.size());
                 genomicStudy.addAnalysis()
                         .setTitle(gtrEntry.labTestName())
                         .setInstantiatesUri("https://www.ncbi.nlm.nih.gov/gtr/tests/" + gtrEntry.labTestId());
@@ -358,7 +358,7 @@ public class GtrToFhirService {
 //                Methods
 //                System.out.println("Test Method: " + gtrEntry.methods());
                 for (String term : gtrEntry.methods().split("\\|")){
-                    System.out.println("term is: " + term);
+//                    System.out.println("term is: " + term);
        /*             genomicStudy.addAnalysis().addDevice().setDevice(new Reference(
                             "https://build.fhir.org/device-example.html"));*/
 
