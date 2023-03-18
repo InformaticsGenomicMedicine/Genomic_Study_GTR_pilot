@@ -1,3 +1,17 @@
+/*Please note the important note from the NCBI-GTR website:
+    " If you distribute or copy data from the NIH Genetic Testing Registry, we ask that you provide attribution to GTR as a data source in publications and websites by:
+
+    linking to the GTR website: http://www.ncbi.nlm.nih.gov/gtr/ and/or
+    citing this publication: http://nar.oxfordjournals.org/content/41/D1/D925.full"*/
+
+/*
+    This tool does not aim to distribute or copy data from NIH Genetic Testing Registry, but to show case how informatics tools can maximize the benefit from these valuable data.
+        NIH work is much appreacheated, thanks a lot
+*/
+
+
+
+
 CREATE TABLE IF NOT EXISTS Gtr_Entry (
 --     id INTEGER AUTO_INCREMENT,  -- for H2
                                        id SERIAL PRIMARY KEY,
@@ -75,25 +89,25 @@ CSV HEADER;
 CREATE TABLE IF NOT EXISTS disease (
 --     id INTEGER AUTO_INCREMENT,  -- for H2
                                          id SERIAL PRIMARY KEY,
-                                         DiseaseName text,
-                                         SourceName text,
-                                         ConceptID text,
-                                         SourceID text,
-                                         DiseaseMIM text,
-                                         LastModified text,
-                                         Category text
+                                         disease_name text,
+                                         source_name text,
+                                         concept_id text,
+                                         source_id text,
+                                         disease_mim text,
+                                         last_modified text,
+                                         category text
 --     , primary key (id) -- for H2
 );
 
 -- to load data from the TSV file
 
-COPY disease (  DiseaseName,
-                SourceName,
-                ConceptID,
-                SourceID,
-                DiseaseMIM,
-                LastModified,
-                Category
+COPY disease (  disease_name,
+                source_name,
+                concept_id,
+                source_id,
+                disease_mim,
+                last_modified,
+                category
     )
 FROM 'C:\Users\M250419\Downloads\disease_names.txt'--'C:\Users\path\to\NCBI\GTR\disease_names.txt' --after un zipping it
 DELIMITER E'\t'
