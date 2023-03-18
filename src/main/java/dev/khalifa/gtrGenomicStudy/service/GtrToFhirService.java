@@ -151,6 +151,9 @@ public class GtrToFhirService {
                 )))
                         .addDevice().setDevice(new Reference("https://build.fhir.org/device-example.html"));
 
+                genomicStudy.getAnalysis().get(0).addInput().setFile(
+                        new Reference("https://build.fhir.org/documentreference-example.html"));
+
             }
 
         }
@@ -163,6 +166,7 @@ public class GtrToFhirService {
             if (!gtrEntry.get().platforms().equals(noPlatform)) {
                 for (String term : gtrEntry.get().platforms().split("\\|")) {
                     genomicStudy.getAnalysis().get(0).addDevice().setDevice(new Reference(term));
+
                 }
             }
         }
