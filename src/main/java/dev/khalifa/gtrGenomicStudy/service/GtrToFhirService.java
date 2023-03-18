@@ -225,10 +225,16 @@ public class GtrToFhirService {
             )));
         }
 //Setting description including a link to the condition page on NIH GTR
-        genomicStudy.setDescription("A genomic study for "
+        genomicStudy.setDescription("# A genomic study for "
                 + diseaseList.get(0).diseaseName()
-                + ".\nMore details about this condition is available at: https://www.ncbi.nlm.nih.gov/gtr/conditions/"
-                + diseaseConceptId);
+                + ".  " +
+                "## More details about this condition is available at: https://www.ncbi.nlm.nih.gov/gtr/conditions/"
+                + diseaseConceptId +
+                ".  " +
+                "## MedGen record: https://www.ncbi.nlm.nih.gov/medgen/?term=" +
+                diseaseConceptId +
+                "[source_id]"
+        );
 
 
         return genomicStudy;
