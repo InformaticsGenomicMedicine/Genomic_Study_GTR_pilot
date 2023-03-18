@@ -257,6 +257,7 @@ public class GtrToFhirService {
         HashSet<String> testDevelopmentTypes = new HashSet<String>();
         HashSet<String> indicationTypes = new HashSet<String>();
         HashSet<String> methodCategories = new HashSet<String>();
+        HashSet<String> labTestIdList = new HashSet<String>();
 
         List<GtrEntry> gtrEntryList = repository.
                 findGtrEntriesByConditionIdentifiersContains(diseaseList.get(0).diseaseName());
@@ -359,7 +360,9 @@ public class GtrToFhirService {
        /*             genomicStudy.addAnalysis().addDevice().setDevice(new Reference(
                             "https://build.fhir.org/device-example.html"));*/
 
-                    genomicStudy.getAnalysis().get(0).addMethodType(new CodeableConcept(new Coding(
+                    genomicStudy.getAnalysis()
+                            .get(genomicStudy.getAnalysis().size()-1)
+                            .addMethodType(new CodeableConcept(new Coding(
                             "Primary Test Methodology: https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt",
                             null,
                             term
