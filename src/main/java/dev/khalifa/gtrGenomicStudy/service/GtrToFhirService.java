@@ -71,7 +71,7 @@ public class GtrToFhirService {
 //        manufacturerTestName
         if (gtrEntry.get().manufacturerTestName() != null) {
             Identifier identifierManufacturerTestName = new Identifier().setValue(gtrEntry.get().manufacturerTestName());
-            identifierManufacturerTestName.setSystem("https://www.ncbi.nlm.nih.gov/gtr/");
+            identifierManufacturerTestName.setSystem("Manufacturer Test Name: https://www.ncbi.nlm.nih.gov/gtr/");
             identifierList.add(identifierManufacturerTestName);
         }
 
@@ -367,6 +367,21 @@ public class GtrToFhirService {
                             null,
                             term
                     )));
+                }
+
+                //        Setting platform
+//          This is not a real FHIR reference, but this was used to showcase the name of the device
+//              as it may appear in a corresponding resource, i.e., device.displayName
+                String noPlatform = "None/not applicable";
+                if (gtrEntry.platforms() != null){
+                    if (!gtrEntry.platforms().equals(noPlatform)) {
+                        for (String term : gtrEntry.platforms().split("\\|")) {
+                            genomicStudy.getAnalysis()
+                                    .get(genomicStudy.getAnalysis().size()-1)
+                                    .addDevice().setDevice(new Reference(term));
+
+                        }
+                    }
                 }
             }
         } //End of GtrEntry Loop
