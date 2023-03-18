@@ -200,7 +200,7 @@ public class GtrToFhirService {
         //        setting identifiers
         List<Identifier> identifierList = new ArrayList<>();
 
-        if(!diseaseList.isEmpty()) {
+        if(diseaseList.isEmpty()) {
             return genomicStudy;
         }
 //          Setting identifiers based on disease concept_id
