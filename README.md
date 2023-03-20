@@ -1,5 +1,5 @@
 # GTR Genomic Study Applicaiton
-Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Genomic Study resource and some supporting resources
+Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Genomic Study resource.
 
 ## Running application locally
 
