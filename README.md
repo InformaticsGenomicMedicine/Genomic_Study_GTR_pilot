@@ -13,3 +13,6 @@ Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Ge
 - Copy file paths to "src/main/resources/schema.sql" and replace current values, i.e., "C:\gtr_data\test_version" and "C:\gtr_data\disease_names.txt" with your downloaded and unzipped file paths
 
 - Run the application from the IDE.
+
+
+### Note: the GenomicStudy.status is a code. However it is represented as a codeable concept as per the use library method signature genomicStudy.setStatus(). An issue was submitted to HAPI FHIR about this.
