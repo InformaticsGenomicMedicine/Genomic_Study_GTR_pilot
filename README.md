@@ -4,7 +4,7 @@ Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Ge
 ## Running application locally
 
 - Install Postgres and pgAdmin
-- Create database name ncbi-gtr
+- Create database and name it ncbi-gtr
 - Take note of port number, user name, and password
 - Change them on the application.properties file
 - Download data and unzip the following files:
