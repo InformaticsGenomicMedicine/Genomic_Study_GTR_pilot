@@ -15,7 +15,7 @@ Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Ge
 - Run the application from the IDE.
 - Check the following ling for the Swagger page: http://localhost:8080/swagger-ui/index.html
 - Check the following link: http://localhost:8080/gtr_fhir/disease/C4518821
-- Check the file gtr_genomic_study.http for more testing http requests
+- Check the file [gtr_genomic_study.http](https://github.com/khalifa-aly/gtr_genomic_study/blob/main/gtr_genomic_study.http) for more testing http requests
 
 
 ### Note: the GenomicStudy.status is a code. However it is represented as a codeable concept as per the use library method signature genomicStudy.setStatus(). An issue was submitted to HAPI FHIR about this.
