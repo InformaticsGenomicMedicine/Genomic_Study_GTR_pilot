@@ -52,4 +52,6 @@ public class GtrFhirController {
 //        return repository.findGtrEntriesByTestAccessionVerContaining(testAccessionVer);
         return parser.encodeResourceToString(gtrToFhirService.getGenomicStudyByDisease(diseaseConceptId));
     }
+
+//    TODO: adding a webpage for easier user experience
 }
