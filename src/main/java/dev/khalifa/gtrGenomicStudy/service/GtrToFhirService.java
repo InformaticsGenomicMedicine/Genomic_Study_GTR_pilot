@@ -29,7 +29,7 @@ public class GtrToFhirService {
     @Value("${FHIR.serverBase.url}")
     private String serverBase;
     // setting HAPI FHIR client to use specific server
-//    TODO using dynamic server base url from the app properties
+//    TODO using dynamic server base url, patient reference, and GTR address from the app properties
     IGenericClient client = ctx.newRestfulGenericClient("https://hapi.fhir.org/baseR5");
 
     public GtrToFhirService(GtrEntryRepository repository, DiseaseRepository diseaseRepository, StandardTerms terms) {
