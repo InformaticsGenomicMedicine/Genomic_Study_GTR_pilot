@@ -29,7 +29,7 @@ public class GtrFhirController {
 
     @GetMapping(value = "/{internalId}", produces = "application/json")
 //    The following is a swagger annotation
-    @Operation(description = "A Genomic Study resource for specific NCBI-GTR entry",
+    @Operation(description = "A Genomic Study resource for specific NCBI-GTR entry internal ID, e.g., 1",
     responses = {
             @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
             @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
@@ -42,7 +42,7 @@ public class GtrFhirController {
 
     @GetMapping(value = "/disease/{diseaseConceptId}", produces = "application/json")
 //    The following is a swagger annotation
-    @Operation(description = "A Genomic Study resource for specific NCBI-GTR entry",
+    @Operation(description = "A Genomic Study resource based on a disease concept id, e.g., C0001079",
             responses = {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
                     @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
