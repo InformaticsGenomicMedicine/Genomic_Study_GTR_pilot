@@ -42,7 +42,8 @@ public class GtrFhirController {
 
     @GetMapping(value = "/disease/{diseaseConceptId}", produces = "application/json")
 //    The following is a swagger annotation
-    @Operation(description = "A Genomic Study resource based on a disease concept id, e.g., C0001079",
+    @Operation(description = "A Genomic Study resource based on a disease concept id, e.g., C0001079, " +
+            "C4518821 (three analyses), or C0001079 (966 analyses, time consuming and large resource produced)",
             responses = {
                     @ApiResponse(responseCode = "400", ref = "badRequestAPI"),
                     @ApiResponse(responseCode = "500", ref = "internalServerErrorAPI"),
