@@ -18,4 +18,4 @@ Providing NCBI Genetic Testing Registry as FHIR resources, mainly the FHIR R5 Ge
 - Check the file [gtr_genomic_study.http](https://github.com/khalifa-aly/gtr_genomic_study/blob/main/gtr_genomic_study.http) for more testing http requests
 
 
-### Note: There was an issue with the HAPI FHIR representation of GenomicStudy.status (), and it is now fixed. Currently this project use HAPI FHIR 6.6.0
+### Note: There was an [issue](https://github.com/hapifhir/hapi-fhir/issues/4666) with the HAPI FHIR representation of GenomicStudy.status, and it is now fixed. Currently this project use HAPI FHIR 6.6.0
