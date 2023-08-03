@@ -42,12 +42,15 @@ public class GtrToFhirService {
 
         Optional<GtrEntry> gtrEntry = repository.findById(Integer.valueOf(internalId));
 
-        GenomicStudy genomicStudy = new GenomicStudy(
+/*        GenomicStudy genomicStudy = new GenomicStudy(
                 new CodeableConcept(new Coding("http://hl7.org/fhir/genomicstudy-status",
                         "unknown", "Unknown")),
 //                from https://build.fhir.org/patient-examples.html
                 new Reference("https://build.fhir.org/patient-example.json")
-        );
+        );*/
+        GenomicStudy genomicStudy = new GenomicStudy(
+                GenomicStudy.GenomicStudyStatus.UNKNOWN,
+                new Reference("https://build.fhir.org/patient-example.json"));
 
 //        setting identifiers
         List<Identifier> identifierList = new ArrayList<>();
@@ -190,12 +193,16 @@ public class GtrToFhirService {
     public GenomicStudy getGenomicStudyByDisease(String diseaseConceptId) {
         List<Disease> diseaseList = diseaseRepository.findDiseasesByConceptId(diseaseConceptId);
 //        System.out.println(diseaseList);
-        GenomicStudy genomicStudy = new GenomicStudy(
+/*        GenomicStudy genomicStudy = new GenomicStudy(
                 new CodeableConcept(new Coding("http://hl7.org/fhir/genomicstudy-status",
                         "unknown", "Unknown")),
 //                from https://build.fhir.org/patient-examples.html
                 new Reference("https://build.fhir.org/patient-example.json")
-        );
+        );*/
+
+        GenomicStudy genomicStudy = new GenomicStudy(
+                GenomicStudy.GenomicStudyStatus.UNKNOWN,
+                new Reference("https://build.fhir.org/patient-example.json"));
 
         //        setting identifiers
         List<Identifier> identifierList = new ArrayList<>();
